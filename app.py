@@ -18,59 +18,13 @@ CORS(app)  # This allows requests from any origin
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "plant-disease-model.pth")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Define your class labels (adjust to match your 44 classes)
-# Define your class labels with the exact names from your client
-class_names = [
-    'Apple___Apple_scab', 
-    'Apple___Black_rot', 
-    'Apple___Cedar_apple_rust', 
-    'Apple___healthy', 
-    'Blueberry___healthy', 
-    'Cherry_(including_sour)___healthy', 
-    'Cherry_(including_sour)___Powdery_mildew', 
-    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot', 
-    'Corn_(maize)___Common_rust_', 
-    'Corn_(maize)___healthy', 
-    'Corn_(maize)___Northern_Leaf_Blight', 
-    'Cotton___Aphids', 
-    'Cotton___Army_worm', 
-    'Cotton___Bacterial_blight', 
-    'Cotton___Healthy', 
-    'Cotton___Powdery_mildew', 
-    'Cotton___Target_spot', 
-    'Grape___Black_rot', 
-    'Grape___Esca_(Black_Measles)', 
-    'Grape___healthy', 
-    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)', 
-    'Orange___Haunglongbing_(Citrus_greening)', 
-    'Peach___Bacterial_spot', 
-    'Peach___healthy', 
-    'Pepper,_bell___Bacterial_spot', 
-    'Pepper,_bell___healthy', 
-    'Potato___Early_blight', 
-    'Potato___healthy', 
-    'Potato___Late_blight', 
-    'Raspberry___healthy', 
-    'Soybean___healthy', 
-    'Squash___Powdery_mildew', 
-    'Strawberry___healthy', 
-    'Strawberry___Leaf_scorch', 
-    'Tomato___Bacterial_spot', 
-    'Tomato___Early_blight', 
-    'Tomato___healthy', 
-    'Tomato___Late_blight', 
-    'Tomato___Leaf_Mold', 
-    'Tomato___Septoria_leaf_spot', 
-    'Tomato___Spider_mites Two-spotted_spider_mite', 
-    'Tomato___Target_Spot', 
-    'Tomato___Tomato_mosaic_virus', 
-    'Tomato___Tomato_Yellow_Leaf_Curl_Virus'
-]
+# Define your class labels with the exact names
+class_names = ['Cotton__Aphids', 'Cotton_Army_worm', 'Cotton_Bacterial_blight', 'Cotton_Healthy', 'Cotton_Powdery_mildew', 'Cotton__Target_spot']
 
 # Load the model
 try:
     print("Loading model from:", model_path)
-    model = PlantDiseaseModel(num_classes=44)  # Match your model's output size
+    model = PlantDiseaseModel(num_classes=6)  # Match your model's output size
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.to(device)
     model.eval()

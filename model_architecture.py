@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class PlantDiseaseModel(nn.Module):
-    def __init__(self, num_classes=44):  # Your model has 44 output classes
+    def __init__(self, num_classes=6):  # Your model has 44 output classes
         super(PlantDiseaseModel, self).__init__()
         
         # Using the correct dimensions from the error message
